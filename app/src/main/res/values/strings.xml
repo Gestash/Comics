@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Comics</string>
+    <string name="btn_prev">Previous</string>
+    <string name="btn_next">Next</string>
+
+</resources>
