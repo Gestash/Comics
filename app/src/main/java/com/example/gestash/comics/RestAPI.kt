@@ -7,8 +7,9 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.lang.Error
 
-class Client {
+class RestAPI {
     private val service: Service
 
     init {
@@ -30,46 +31,50 @@ class Client {
         service = retrofit.create(Service::class.java)
     }
 
-    fun getImage(url: (String?) -> Unit) {
+    fun getComics(success: (Comics) -> Unit, failure: (Error) -> Unit) {
 
-        val call = service.getJson()
+        val call = service.getComics()
         call.enqueue(object : Callback<Comics> {
             override fun onResponse(call: Call<Comics>, response: Response<Comics>) {
                 if (response.isSuccessful) {
-                    val data = response.body()
-                    if (data != null) {
-                        url(data.img)
+                    val comics = response.body()
+                    if (comics == null) {
+                        failure(Error("error"))
+                        return
                     }
+                    success(comics)
                 } else {
-
-
+                    failure(Error("error"))
                 }
             }
 
             override fun onFailure(call: Call<Comics>, t: Throwable) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                failure(Error("error"))
             }
         })
     }
 
-    fun getPreviousImage(url: (String?) -> Unit){
-        val call = service.getJson()
+    fun getComicsByNumber(number:Int, success: (Comics) -> Unit, failure: (Error) -> Unit) {
+
+        val call = service.getComicsByNumber(number)
         call.enqueue(object : Callback<Comics> {
             override fun onResponse(call: Call<Comics>, response: Response<Comics>) {
                 if (response.isSuccessful) {
-                    val data = response.body()
-                    if (data != null) {
-                        url(data.img)
+                    val comics = response.body()
+                    if (comics == null) {
+                        failure(Error("error"))
+                        return
                     }
+                    success(comics)
                 } else {
-
-
+                    failure(Error("error"))
                 }
             }
 
             override fun onFailure(call: Call<Comics>, t: Throwable) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                failure(Error("error"))
             }
         })
     }
+
 }
