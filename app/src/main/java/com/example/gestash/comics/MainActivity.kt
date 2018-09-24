@@ -8,18 +8,36 @@ import org.jetbrains.anko.sdk25.coroutines.onClick
 
 class MainActivity : AppCompatActivity() {
 
-    val client = Client()
+    val comicsProvider = ComicsProvider()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        imageView.setOnTouchListener(object :OnSwipeTouchListener(this) {
+            override fun onSwipeLeft() {
+                comicsProvider.getPreviousComics(::loadImage)
 
-        client.getImage { url -> Picasso.get().load(url).into(imageView)}
+            }
 
-        btn_prev.onClick {
-            //val url =
-            client.getImage { url -> Picasso.get().load(url).into(imageView)}
+            override fun onSwipeRight() {
+                comicsProvider.getNextComics(::loadImage)
+
+            }
         }
 
-        //Picasso.get().load("http://i.imgur.com/DvpvklR.png").into(imageView)
+        )
+
+        comicsProvider.getLastComics(::loadImage)
+
+        btn_prev.onClick {
+            comicsProvider.getPreviousComics(::loadImage)
+        }
+
+       btn_next.onClick {
+           comicsProvider.getNextComics(::loadImage)
+       }
+    }
+
+    private fun loadImage(url:String) {
+        Picasso.get().load(url).into(imageView)
     }
 }
