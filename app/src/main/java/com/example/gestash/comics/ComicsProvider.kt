@@ -11,9 +11,7 @@ class ComicsProvider {
         restAPI.getComics(success = { comics ->
             currentComicsNumber = comics.num
             lastComicsNumber = comics.num
-            val number = "#$currentComicsNumber"
-            val date = comics.day + "." + comics.month + "." + comics.year
-            result(ComicsViewModel(date, number, comics.img, comics.title))
+            result(ComicsViewModel(comics))
         }, failure = { error ->
             TODO()
         })
@@ -27,9 +25,7 @@ class ComicsProvider {
 
         restAPI.getComicsByNumber(currentComicsNumber - 1, success = { comics ->
             currentComicsNumber = comics.num
-            val number = "#$currentComicsNumber"
-            val date = comics.day + "." + comics.month + "." + comics.year
-            result(ComicsViewModel(date, number, comics.img, comics.title))
+            result(ComicsViewModel(comics))
         }, failure = { error ->
             TODO()
         })
@@ -41,9 +37,7 @@ class ComicsProvider {
         }
         restAPI.getComicsByNumber(currentComicsNumber + 1, success = { comics ->
             currentComicsNumber = comics.num
-            val number = "#$currentComicsNumber"
-            val date = comics.day + "." + comics.month + "." + comics.year
-            result(ComicsViewModel(date, number, comics.img, comics.title))
+            result(ComicsViewModel(comics))
         }, failure = { error ->
             TODO()
         })
@@ -54,9 +48,7 @@ class ComicsProvider {
         val randomComics = random.nextInt(lastComicsNumber)
         restAPI.getComicsByNumber(randomComics, success = { comics ->
             currentComicsNumber = comics.num
-            val number = "#$currentComicsNumber"
-            val date = comics.day + "." + comics.month + "." + comics.year
-            result(ComicsViewModel(date, number, comics.img, comics.title))
+            result(ComicsViewModel(comics))
         }, failure = { error ->
             TODO()
         })

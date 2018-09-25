@@ -5,8 +5,6 @@ import android.support.v7.app.AppCompatActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
-import java.sql.Date
-import java.text.DateFormat
 
 class MainActivity : AppCompatActivity() {
 
