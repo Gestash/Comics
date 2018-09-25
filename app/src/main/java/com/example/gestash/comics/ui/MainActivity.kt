@@ -1,7 +1,10 @@
-package com.example.gestash.comics
+package com.example.gestash.comics.ui
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.example.gestash.comics.domain.ComicsProvider
+import com.example.gestash.comics.utils.OnSwipeTouchListener
+import com.example.gestash.comics.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.sdk25.coroutines.onClick

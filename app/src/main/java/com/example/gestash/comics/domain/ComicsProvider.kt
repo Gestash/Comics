@@ -1,5 +1,7 @@
-package com.example.gestash.comics
+package com.example.gestash.comics.domain
 
+import com.example.gestash.comics.net.RestAPI
+import com.example.gestash.comics.ui.ComicsViewModel
 import java.util.*
 
 class ComicsProvider {

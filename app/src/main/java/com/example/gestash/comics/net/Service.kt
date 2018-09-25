@@ -1,4 +1,4 @@
-package com.example.gestash.comics
+package com.example.gestash.comics.net
 
 import retrofit2.Call
 import retrofit2.http.GET

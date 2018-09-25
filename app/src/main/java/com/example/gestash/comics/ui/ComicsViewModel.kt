@@ -1,5 +1,6 @@
-package com.example.gestash.comics
+package com.example.gestash.comics.ui
 
+import com.example.gestash.comics.net.Comics
 import java.text.DateFormat
 import java.util.*
 

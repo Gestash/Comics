@@ -1,4 +1,4 @@
-package com.example.gestash.comics
+package com.example.gestash.comics.utils
 
 import android.content.Context
 import android.view.GestureDetector
