@@ -1,12 +1,11 @@
 package com.example.gestash.comics.net
 
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface Service {
     @GET("info.0.json ")
-    fun getComics() : Call<Comics>
+    fun getLastComics() : Call<Comics>
 
     @GET("{number}/info.0.json ")
     fun getComicsByNumber(@Path("number") number:Int): Call<Comics>

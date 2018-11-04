@@ -1,4 +1,4 @@
-package com.example.gestash.comics.ui
+package com.example.gestash.comics.presentation.model
 
 import com.example.gestash.comics.net.Comics
 import java.text.DateFormat
@@ -7,8 +7,8 @@ import java.util.*
 
 data class ComicsViewModel(
         val date: String,
-        val num: String,
-        val img: String,
+        val number: String,
+        val imageUrl: String,
         val title: String
 )
 

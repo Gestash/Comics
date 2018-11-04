@@ -7,10 +7,13 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.lang.Error
 
 class RestAPI {
+    private val XKCD_BASE_URL = "http://xkcd.com/"
+
     private val service: Service
+
+    private var call: Call<Comics>? = null
 
     init {
         val interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
@@ -23,7 +26,7 @@ class RestAPI {
 
 
         val retrofit = Retrofit.Builder()
-                .baseUrl("http://xkcd.com/")
+                .baseUrl(XKCD_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()
@@ -31,48 +34,36 @@ class RestAPI {
         service = retrofit.create(Service::class.java)
     }
 
-    fun getComics(success: (Comics) -> Unit, failure: (Error) -> Unit) {
+    fun getLast(handler: (Comics?) -> Unit) {
 
-        val call = service.getComics()
-        call.enqueue(object : Callback<Comics> {
+        call?.cancel()
+
+        call = service.getLastComics()
+
+        call?.enqueue(object : Callback<Comics> {
             override fun onResponse(call: Call<Comics>, response: Response<Comics>) {
-                if (response.isSuccessful) {
-                    val comics = response.body()
-                    if (comics == null) {
-                        failure(Error("error"))
-                        return
-                    }
-                    success(comics)
-                } else {
-                    failure(Error("error"))
-                }
+                handler(response.body())
             }
 
             override fun onFailure(call: Call<Comics>, t: Throwable) {
-                failure(Error("error"))
+                handler(null)
             }
         })
     }
 
-    fun getComicsByNumber(number:Int, success: (Comics) -> Unit, failure: (Error) -> Unit) {
+    fun getComicsByNumber(number: Int, handler: (Comics?) -> Unit) {
 
-        val call = service.getComicsByNumber(number)
-        call.enqueue(object : Callback<Comics> {
+        call?.cancel()
+
+        call = service.getComicsByNumber(number)
+
+        call?.enqueue(object : Callback<Comics> {
             override fun onResponse(call: Call<Comics>, response: Response<Comics>) {
-                if (response.isSuccessful) {
-                    val comics = response.body()
-                    if (comics == null) {
-                        failure(Error("error"))
-                        return
-                    }
-                    success(comics)
-                } else {
-                    failure(Error("error"))
-                }
+                handler(response.body())
             }
 
             override fun onFailure(call: Call<Comics>, t: Throwable) {
-                failure(Error("error"))
+                handler(null)
             }
         })
     }

@@ -1,48 +1,64 @@
 package com.example.gestash.comics.ui
 
+import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import com.example.gestash.comics.domain.ComicsProvider
-import com.example.gestash.comics.utils.OnSwipeTouchListener
+import android.support.v7.app.AppCompatDelegate
+import android.view.View.GONE
+import android.view.View.VISIBLE
+import com.arellomobile.mvp.MvpAppCompatActivity
+import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.PresenterType
 import com.example.gestash.comics.R
-import com.squareup.picasso.Picasso
+import com.example.gestash.comics.presentation.presenter.MainPresenter
+import com.example.gestash.comics.presentation.view.MainView
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
+import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : MvpAppCompatActivity(), MainView {
 
-    val comicsProvider = ComicsProvider()
+    @InjectPresenter(type = PresenterType.GLOBAL)
+    lateinit var mainPresenter: MainPresenter
+
+    lateinit var pageAdapter: HorizontalPagerAdapter
+
+    var url = ""
     override fun onCreate(savedInstanceState: Bundle?) {
+        AppCompatDelegate.setDefaultNightMode(
+                AppCompatDelegate.MODE_NIGHT_AUTO)//тема ночная
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        imageView.setOnTouchListener(object : OnSwipeTouchListener(this) {
-            override fun onSwipeLeft() {
-                comicsProvider.getNextComics(::loadImage)
+
+
+        shareButton.onClick {
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, url)
+                type = "text/plain"
             }
-            override fun onSwipeRight() {
-                comicsProvider.getPreviousComics(::loadImage)
-            }
-        })
-
-        comicsProvider.getLastComics(::loadImage)
-
-        btn_prev.onClick {
-            comicsProvider.getPreviousComics(::loadImage)
+            startActivity(sendIntent)
         }
 
-        btn_next.onClick {
-            comicsProvider.getNextComics(::loadImage)
+        randomButton.onClick {
+            val item = Random().nextInt(pageAdapter.count - 1) + 1
+            viewPager.currentItem = item
         }
 
-        btn_random.onClick {
-            comicsProvider.getRandomComics(::loadImage)
-        }
+        mainPresenter.loadComicsCount()
     }
 
-    private fun loadImage(comicsViewModel: ComicsViewModel) {
-        Picasso.get().load(comicsViewModel.img).into(imageView)
-        mainTitle.text = comicsViewModel.title
-        date.text = comicsViewModel.date
-        number.text = comicsViewModel.num
+    override fun onComicsCountLoaded(count: Int) {
+        progressBar.visibility = GONE
+        viewPager.visibility = VISIBLE
+
+        pageAdapter = HorizontalPagerAdapter(supportFragmentManager, count)
+        viewPager.adapter = pageAdapter
+    }
+
+    override fun onComicsCountLoadFailure() {
+        progressBar.visibility = GONE
+        errorView.visibility = VISIBLE
     }
 }
+
+
