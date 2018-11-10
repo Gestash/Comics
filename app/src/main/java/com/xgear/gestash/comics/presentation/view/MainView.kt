@@ -1,4 +1,4 @@
-package com.example.gestash.comics.presentation.view
+package com.xgear.gestash.comics.presentation.view
 
 import com.arellomobile.mvp.MvpView
 

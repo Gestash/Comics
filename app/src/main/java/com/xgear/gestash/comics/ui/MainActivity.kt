@@ -1,6 +1,5 @@
-package com.example.gestash.comics.ui
+package com.xgear.gestash.comics.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatDelegate
 import android.view.View.GONE
@@ -8,9 +7,9 @@ import android.view.View.VISIBLE
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.PresenterType
-import com.example.gestash.comics.R
-import com.example.gestash.comics.presentation.presenter.MainPresenter
-import com.example.gestash.comics.presentation.view.MainView
+import com.xgear.gestash.comics.R
+import com.xgear.gestash.comics.presentation.presenter.MainPresenter
+import com.xgear.gestash.comics.presentation.view.MainView
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import java.util.*

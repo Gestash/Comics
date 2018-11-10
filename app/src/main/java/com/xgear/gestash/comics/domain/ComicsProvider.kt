@@ -1,7 +1,7 @@
-package com.example.gestash.comics.domain
+package com.xgear.gestash.comics.domain
 
-import com.example.gestash.comics.net.RestAPI
-import com.example.gestash.comics.presentation.model.ComicsViewModel
+import com.xgear.gestash.comics.net.RestAPI
+import com.xgear.gestash.comics.presentation.model.ComicsViewModel
 
 class ComicsProvider {
     private val restAPI = RestAPI()

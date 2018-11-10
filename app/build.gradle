@@ -6,7 +6,7 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.example.gestash.comics"
+        applicationId "com.xgear.gestash.comics"
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 1

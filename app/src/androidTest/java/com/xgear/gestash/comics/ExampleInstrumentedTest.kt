@@ -1,4 +1,4 @@
-package com.example.gestash.comics
+package com.xgear.gestash.comics
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("com.example.gestash.comics", appContext.packageName)
+        assertEquals("com.xgear.gestash.comics", appContext.packageName)
     }
 }

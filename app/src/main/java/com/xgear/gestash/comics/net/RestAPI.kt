@@ -1,4 +1,4 @@
-package com.example.gestash.comics.net
+package com.xgear.gestash.comics.net
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

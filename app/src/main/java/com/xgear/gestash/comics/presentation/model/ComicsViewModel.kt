@@ -1,6 +1,6 @@
-package com.example.gestash.comics.presentation.model
+package com.xgear.gestash.comics.presentation.model
 
-import com.example.gestash.comics.net.Comics
+import com.xgear.gestash.comics.net.Comics
 import java.text.DateFormat
 import java.util.*
 

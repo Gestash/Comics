@@ -1,4 +1,4 @@
-package com.example.gestash.comics
+package com.xgear.gestash.comics
 
 import org.junit.Test
 

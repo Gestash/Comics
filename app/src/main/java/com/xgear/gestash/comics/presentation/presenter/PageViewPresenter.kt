@@ -1,9 +1,9 @@
-package com.example.gestash.comics.presentation.presenter
+package com.xgear.gestash.comics.presentation.presenter
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import com.example.gestash.comics.domain.ComicsProvider
-import com.example.gestash.comics.presentation.view.PageView
+import com.xgear.gestash.comics.domain.ComicsProvider
+import com.xgear.gestash.comics.presentation.view.PageView
 
 @InjectViewState
 class PageViewPresenter : MvpPresenter<PageView>() {
