@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import java.util.*
 
+
 class MainActivity : MvpAppCompatActivity(), MainView {
 
     @InjectPresenter(type = PresenterType.GLOBAL)
@@ -30,19 +31,24 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         setContentView(R.layout.activity_main)
 
 
-        shareButton.onClick {
-            val sendIntent: Intent = Intent().apply {
-                action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT, url)
-                type = "text/plain"
-            }
-            startActivity(sendIntent)
-        }
+//        shareButton.onClick {
+//            val sendIntent: Intent = Intent().apply {
+//                action = Intent.ACTION_SEND
+//                putExtra(Intent.EXTRA_TEXT, url)
+//                type = "text/plain"
+//            }
+//            startActivity(sendIntent)
+//        }
 
         randomButton.onClick {
             val item = Random().nextInt(pageAdapter.count - 1) + 1
             viewPager.currentItem = item
         }
+
+//        downloadButton.onClick {
+//
+//
+//        }
 
         mainPresenter.loadComicsCount()
     }

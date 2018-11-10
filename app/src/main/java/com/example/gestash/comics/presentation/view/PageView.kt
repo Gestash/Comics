@@ -6,4 +6,5 @@ import com.example.gestash.comics.presentation.model.ComicsViewModel
 interface PageView : MvpView {
     fun onComicsLoaded(data: ComicsViewModel)
     fun onComicsLoadFailure()
+    fun onDownloadComics()
 }

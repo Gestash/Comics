@@ -1,5 +1,6 @@
 package com.example.gestash.comics.ui
 
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,10 @@ import com.example.gestash.comics.presentation.presenter.PageViewPresenter
 import com.example.gestash.comics.presentation.view.PageView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.page_view_fragment.*
+import android.graphics.drawable.BitmapDrawable
+import android.os.Environment
+import java.io.File
+import java.io.FileOutputStream
 
 
 class PageViewFragment : MvpAppCompatFragment(), PageView {
@@ -46,5 +51,27 @@ class PageViewFragment : MvpAppCompatFragment(), PageView {
 
     override fun onComicsLoadFailure() {
         //TODO
+    }
+
+    override fun onDownloadComics(){
+        imageView.invalidate()
+        val image_name = "name"
+        val drawable = imageView.drawable as BitmapDrawable
+        val bitmap = drawable.bitmap
+        val root = Environment.getExternalStorageDirectory().toString()
+        val myDir = File(root)
+        myDir.mkdirs()
+        val fname = "Image-$image_name.jpg"
+        val file = File(myDir, fname)
+        if (file.exists()) file.delete()
+        try {
+            val out = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out)
+            out.flush()
+            out.close()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
     }
 }

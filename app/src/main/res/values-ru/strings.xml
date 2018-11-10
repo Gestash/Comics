@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Комиксы</string>
-    <string name="btn_prev">Предыдущий</string>
-    <string name="btn_next">Следующий</string>
-    <string name="btn_random">Случайный</string>
+    <string name="errorView">Произошла ошибка</string>
 </resources>

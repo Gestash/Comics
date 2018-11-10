@@ -1,8 +1,4 @@
 <resources>
     <string name="app_name">Comics</string>
-    <string name="btn_prev">Previous</string>
-    <string name="btn_next">Next</string>
-    <string name="btn_random">Random</string>
-
-
+    <string name="errorView">An error has occurred</string>
 </resources>
