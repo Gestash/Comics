@@ -3,7 +3,7 @@ package com.xgear.gestash.comics.net
 import retrofit2.Call
 import retrofit2.http.*
 
-interface Service {
+interface ComicsService {
     @GET("info.0.json ")
     fun getLastComics() : Call<Comics>
 

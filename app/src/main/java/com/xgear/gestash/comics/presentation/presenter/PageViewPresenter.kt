@@ -2,13 +2,15 @@ package com.xgear.gestash.comics.presentation.presenter
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
+import com.xgear.gestash.comics.ComicsApplication
 import com.xgear.gestash.comics.domain.ComicsProvider
 import com.xgear.gestash.comics.presentation.view.PageView
+
 
 @InjectViewState
 class PageViewPresenter : MvpPresenter<PageView>() {
 
-    private val comicsProvider = ComicsProvider()
+    private val comicsProvider = ComicsProvider(ComicsApplication.getComponent().restApi())
 
     fun getComicsByNumber(number: Int) {
         comicsProvider.getComics(number) {

@@ -1,46 +1,19 @@
 package com.xgear.gestash.comics.net
 
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class RestAPI {
-    private val XKCD_BASE_URL = "http://xkcd.com/"
-
-    private val service: Service
-
-    private var call: Call<Comics>? = null
-
-    init {
-        val interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
-            this.level = HttpLoggingInterceptor.Level.BODY
-        }
-
-        val client: OkHttpClient = OkHttpClient.Builder().apply {
-            this.addInterceptor(interceptor)
-        }.build()
-
-
-        val retrofit = Retrofit.Builder()
-                .baseUrl(XKCD_BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
-                .build()
-
-        service = retrofit.create(Service::class.java)
-    }
+@Singleton
+class RestAPI @Inject constructor(private val service: ComicsService) {
 
     fun getLast(handler: (Comics?) -> Unit) {
 
-        call?.cancel()
+        val call = service.getLastComics()
 
-        call = service.getLastComics()
-
-        call?.enqueue(object : Callback<Comics> {
+        call.enqueue(object : Callback<Comics> {
             override fun onResponse(call: Call<Comics>, response: Response<Comics>) {
                 handler(response.body())
             }
@@ -53,11 +26,9 @@ class RestAPI {
 
     fun getComicsByNumber(number: Int, handler: (Comics?) -> Unit) {
 
-        call?.cancel()
+        val call = service.getComicsByNumber(number)
 
-        call = service.getComicsByNumber(number)
-
-        call?.enqueue(object : Callback<Comics> {
+        call.enqueue(object : Callback<Comics> {
             override fun onResponse(call: Call<Comics>, response: Response<Comics>) {
                 handler(response.body())
             }
