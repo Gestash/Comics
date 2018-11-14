@@ -47,6 +47,7 @@ class PageViewFragment : MvpAppCompatFragment(), PageView {
         comicsNumber.text = data.number
 
         Picasso.get().load(data.imageUrl).into(imageView)
+
     }
 
     override fun onComicsLoadFailure() {

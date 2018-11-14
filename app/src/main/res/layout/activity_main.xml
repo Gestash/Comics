@@ -62,15 +62,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pagenator">
 
-        <!--<ImageButton-->
-            <!--android:id="@+id/shareButton"-->
-            <!--android:layout_width="37dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="1"-->
-            <!--android:background="@android:color/transparent"-->
-            <!--android:contentDescription="TODO"-->
-            <!--android:scaleType="centerInside"-->
-            <!--android:src="@drawable/baseline_share_black_24dp" />-->
+        <ImageButton
+            android:id="@+id/shareButton"
+            android:layout_width="37dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:contentDescription="TODO"
+            android:scaleType="centerInside"
+            android:src="@drawable/baseline_share_black_24dp" />
 
         <ImageButton
             android:id="@+id/randomButton"

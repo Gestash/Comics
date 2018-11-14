@@ -1,5 +1,6 @@
 package com.xgear.gestash.comics.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatDelegate
 import android.view.View.GONE
@@ -22,7 +23,6 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
     lateinit var pageAdapter: HorizontalPagerAdapter
 
-    var url = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(
                 AppCompatDelegate.MODE_NIGHT_AUTO)//тема ночная
@@ -30,14 +30,16 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         setContentView(R.layout.activity_main)
 
 
-//        shareButton.onClick {
-//            val sendIntent: Intent = Intent().apply {
-//                action = Intent.ACTION_SEND
-//                putExtra(Intent.EXTRA_TEXT, url)
-//                type = "text/plain"
-//            }
-//            startActivity(sendIntent)
-//        }
+        shareButton.onClick {
+            val shareUrl = pageAdapter.getShareUrl() ?: return@onClick
+
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, shareUrl)
+                type = "text/plain"
+            }
+            startActivity(sendIntent)
+        }
 
         randomButton.onClick {
             val item = Random().nextInt(pageAdapter.count - 1) + 1

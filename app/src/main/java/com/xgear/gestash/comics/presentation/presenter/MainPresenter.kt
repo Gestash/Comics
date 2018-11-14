@@ -9,7 +9,7 @@ import com.xgear.gestash.comics.presentation.view.MainView
 @InjectViewState
 class MainPresenter : MvpPresenter<MainView>() {
 
-    private val comicsProvider = ComicsProvider(ComicsApplication.getComponent().restApi())
+    private val comicsProvider = ComicsApplication.getComponent().comicsProvider()
 
     fun loadComicsCount() {
         comicsProvider.getComicsCount {
