@@ -16,6 +16,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.page_view_fragment.*
 import android.graphics.drawable.BitmapDrawable
 import android.os.Environment
+import android.view.View.GONE
 import java.io.File
 import java.io.FileOutputStream
 
@@ -42,6 +43,7 @@ class PageViewFragment : MvpAppCompatFragment(), PageView {
     }
 
     override fun onComicsLoaded(data: ComicsViewModel) {
+        progressBarForFragment.visibility = GONE
         mainTitle.text = data.title
         comicsDate.text = data.date
         comicsNumber.text = data.number
