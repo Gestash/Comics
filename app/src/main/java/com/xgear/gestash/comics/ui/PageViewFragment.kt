@@ -1,27 +1,25 @@
 package com.xgear.gestash.comics.ui
 
-import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.PresenterType
+import com.squareup.picasso.Picasso
 import com.xgear.gestash.comics.R
 import com.xgear.gestash.comics.presentation.model.ComicsViewModel
 import com.xgear.gestash.comics.presentation.presenter.PageViewPresenter
 import com.xgear.gestash.comics.presentation.view.PageView
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.page_view_fragment.*
-import android.graphics.drawable.BitmapDrawable
-import android.os.Environment
-import android.view.View.GONE
+import org.jetbrains.anko.support.v4.longToast
 import java.io.File
-import java.io.FileOutputStream
 
 
 class PageViewFragment : MvpAppCompatFragment(), PageView {
+
 
     @InjectPresenter(type = PresenterType.LOCAL)
     lateinit var presenter: PageViewPresenter
@@ -29,7 +27,7 @@ class PageViewFragment : MvpAppCompatFragment(), PageView {
     var comicsNum = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate( R.layout.page_view_fragment, container, false)
+        val view = inflater.inflate(R.layout.page_view_fragment, container, false)
 
         presenter.getComicsByNumber(comicsNum)
 
@@ -48,33 +46,19 @@ class PageViewFragment : MvpAppCompatFragment(), PageView {
         comicsDate.text = data.date
         comicsNumber.text = data.number
 
-        Picasso.get().load(data.imageUrl).into(imageView)
+        presenter.getImageFile(data.imageUrl)
 
     }
 
     override fun onComicsLoadFailure() {
-        //TODO
+        longToast(getString(R.string.errorView))
     }
 
-    override fun onDownloadComics(){
-        imageView.invalidate()
-        val image_name = "name"
-        val drawable = imageView.drawable as BitmapDrawable
-        val bitmap = drawable.bitmap
-        val root = Environment.getExternalStorageDirectory().toString()
-        val myDir = File(root)
-        myDir.mkdirs()
-        val fname = "Image-$image_name.jpg"
-        val file = File(myDir, fname)
-        if (file.exists()) file.delete()
-        try {
-            val out = FileOutputStream(file)
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out)
-            out.flush()
-            out.close()
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+    override fun onImageLoaded(file: File) {
+        Picasso.get().load(file).into(imageView)
+    }
 
+    override fun onImageLoadFailure() {
+        //todo button try again
     }
 }

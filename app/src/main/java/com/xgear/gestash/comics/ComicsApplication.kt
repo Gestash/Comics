@@ -3,6 +3,7 @@ package com.xgear.gestash.comics
 import android.app.Application
 import com.xgear.gestash.comics.di.DaggerSingletonComponent
 import com.xgear.gestash.comics.di.SingletonComponent
+import com.xgear.gestash.comics.di.module.ContextModule
 
 class ComicsApplication : Application() {
     lateinit var comp: SingletonComponent
@@ -10,7 +11,10 @@ class ComicsApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
-        comp = DaggerSingletonComponent.builder().build()
+        comp = DaggerSingletonComponent
+                .builder()
+                .contextModule(ContextModule(this))
+                .build()
     }
 
     companion object {

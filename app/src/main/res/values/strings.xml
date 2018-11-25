@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Comics</string>
-    <string name="errorView">An error has occurred</string>
+    <string name="errorView">An error has occurred!</string>
 </resources>

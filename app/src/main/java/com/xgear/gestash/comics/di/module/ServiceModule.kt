@@ -1,5 +1,7 @@
 package com.xgear.gestash.comics.di.module
 
+import android.content.Context
+import com.xgear.gestash.comics.fs.ImageFileStorage
 import com.xgear.gestash.comics.net.ComicsService
 import dagger.Module
 import dagger.Provides
@@ -35,5 +37,11 @@ class ServiceModule {
     @Singleton
     fun comicsService(retrofit: Retrofit): ComicsService {
         return retrofit.create(ComicsService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun imageFileStorage(context: Context): ImageFileStorage{
+        return ImageFileStorage(cacheDir = context.cacheDir)
     }
 }
