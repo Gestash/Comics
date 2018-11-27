@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Comics</string>
     <string name="errorView">An error has occurred!</string>
+    <string name="savingToast">The comic was saved successfully!</string>
 </resources>

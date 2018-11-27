@@ -29,5 +29,9 @@ class HorizontalPagerAdapter(fm: FragmentManager, private val pagesCount: Int) :
     fun getShareUrl(): String? {
         return currentComicsFragment?.presenter?.comics?.imageUrl
     }
+
+    fun saveCurrentImage(): Boolean {
+        return currentComicsFragment?.presenter?.saveImageToGallery() ?: return false
+    }
 }
 

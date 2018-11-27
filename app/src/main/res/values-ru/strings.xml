@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">Комиксы</string>
     <string name="errorView">Произошла ошибка!</string>
+    <string name="savingToast">Комикс успешно сохранен!</string>
 </resources>

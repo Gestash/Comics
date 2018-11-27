@@ -82,14 +82,14 @@
             android:scaleType="centerInside"
             app:srcCompat="@drawable/baseline_shuffle_black_24dp" />
 
-        <!--<ImageButton-->
-            <!--android:id="@+id/downloadButton"-->
-            <!--android:layout_width="32dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="1"-->
-            <!--android:background="@android:color/transparent"-->
-            <!--android:scaleType="centerInside"-->
-            <!--app:srcCompat="@drawable/baseline_save_alt_black_24dp" />-->
+        <ImageButton
+            android:id="@+id/downloadButton"
+            android:layout_width="32dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/baseline_save_alt_black_24dp" />
 
     </LinearLayout>
 

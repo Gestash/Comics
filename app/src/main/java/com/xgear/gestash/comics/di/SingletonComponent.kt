@@ -4,6 +4,7 @@ import com.xgear.gestash.comics.di.module.ContextModule
 import com.xgear.gestash.comics.di.module.ServiceModule
 import com.xgear.gestash.comics.domain.ComicsProvider
 import com.xgear.gestash.comics.domain.ImageProvider
+import com.xgear.gestash.comics.fs.GallerySaver
 import com.xgear.gestash.comics.fs.ImageFileStorage
 import com.xgear.gestash.comics.net.ComicsService
 import com.xgear.gestash.comics.net.ImageLoader
@@ -21,4 +22,5 @@ interface SingletonComponent {
     fun imageProvider(): ImageProvider
     fun imageLoader(): ImageLoader
     fun imageFileStorage(): ImageFileStorage
+    fun gallerySaver(): GallerySaver
 }
