@@ -8,14 +8,12 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class ImageLoader @Inject constructor() {
-
-    private val client = OkHttpClient()
+class ImageLoader @Inject constructor(private val okHttpClient: OkHttpClient) {
 
     fun loadImage(imageUrl: String, handler: (ByteArray?) -> Unit) {
 
         val request = Request.Builder().url(imageUrl).build()
-        client.newCall(request).enqueue(object : Callback {
+        okHttpClient.newCall(request).enqueue(object : Callback {
             override fun onResponse(call: Call, response: Response) {
 
                 val bytes = if (!response.isSuccessful) null else response.body()?.bytes()

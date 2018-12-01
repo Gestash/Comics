@@ -17,20 +17,25 @@ class ServiceModule {
 
     @Provides
     @Singleton
-    fun retrofit(): Retrofit {
-        val interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
-            this.level = HttpLoggingInterceptor.Level.BODY
-        }
-
-        val client: OkHttpClient = OkHttpClient.Builder().apply {
-            this.addInterceptor(interceptor)
-        }.build()
+    fun retrofit(okhttpClient: OkHttpClient): Retrofit {
 
         return Retrofit.Builder()
                 .baseUrl(XKCD_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
+                .client(okhttpClient)
                 .build()
+    }
+
+    @Provides
+    @Singleton
+    fun okhttpClient(): OkHttpClient {
+        val interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
+            this.level = HttpLoggingInterceptor.Level.BODY
+        }
+
+        return OkHttpClient.Builder().apply {
+            this.addInterceptor(interceptor)
+        }.build()
     }
 
     @Provides
@@ -41,7 +46,7 @@ class ServiceModule {
 
     @Provides
     @Singleton
-    fun imageFileStorage(context: Context): ImageFileStorage{
+    fun imageFileStorage(context: Context): ImageFileStorage {
         return ImageFileStorage(cacheDir = context.cacheDir)
     }
 }
