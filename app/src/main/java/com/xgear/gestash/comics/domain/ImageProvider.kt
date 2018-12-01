@@ -15,20 +15,19 @@ class ImageProvider @Inject constructor(private val imageLoader: ImageLoader,
     fun getImageFile(imageUrl: String, handler: (File?) -> Unit) {
         val fileName = Uri.parse(imageUrl).lastPathSegment
         val imageFile = imageFileStorage.getImageFile(fileName)
+
         if (imageFile.exists()) {
             handler(imageFile)
             return
         }
 
         imageLoader.loadImage(imageUrl) {
-            if (it == null) {
-                handler(null)
-                return@loadImage
+            val file = if (it != null) {
+                imageFileStorage.saveImageFile(fileName, it)
+            } else {
+                null
             }
-
-            val file = imageFileStorage.saveImageFile(fileName, it)
             handler(file)
         }
-
     }
 }

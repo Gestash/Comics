@@ -48,8 +48,11 @@ dependencies {
     implementation "com.arello-mobile:moxy-app-compat:$moxy_version"
     kapt "com.arello-mobile:moxy-compiler:$moxy_version"
 
-    implementation 'com.google.dagger:dagger:2.16'
-    kapt 'com.google.dagger:dagger-compiler:2.16'
+    implementation "com.google.dagger:dagger:$dagger2_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger2_version"
+
+    implementation "android.arch.persistence.room:runtime:$room_version"
+    kapt "android.arch.persistence.room:compiler:$room_version"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

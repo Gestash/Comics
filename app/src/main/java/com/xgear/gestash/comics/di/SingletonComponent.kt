@@ -9,6 +9,7 @@ import com.xgear.gestash.comics.fs.ImageFileStorage
 import com.xgear.gestash.comics.net.ComicsService
 import com.xgear.gestash.comics.net.ImageLoader
 import com.xgear.gestash.comics.net.RestAPI
+import com.xgear.gestash.comics.db.ComicsDataDao
 import dagger.Component
 import javax.inject.Singleton
 
@@ -23,4 +24,5 @@ interface SingletonComponent {
     fun imageLoader(): ImageLoader
     fun imageFileStorage(): ImageFileStorage
     fun gallerySaver(): GallerySaver
+    fun providesComicsDao(): ComicsDataDao
 }
