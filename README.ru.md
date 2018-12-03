@@ -10,6 +10,7 @@
 - *chrisbanes:PhotoView*
 - *Moxy*
 - *Dagger2*
+- *Room*
 
 
 

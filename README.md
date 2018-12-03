@@ -10,5 +10,6 @@ Frameworks and libraries used in application:
 - *chrisbanes:PhotoView* 
 - *Moxy*
 - *Dagger2*
+- *Room*
 
 In the future we plan to improve the application, all your wishes are accepted.
